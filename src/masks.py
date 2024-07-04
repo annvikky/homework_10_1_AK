@@ -13,7 +13,7 @@ if __name__ == "__main__":
 def get_mask_account(account_number: str) -> str | None:
     """Возвращает маску номера счета в виде строки"""
     if account_number.isdigit() and len(account_number) == 20:
-        return f"** {account_number[-4::]}"
+        return f"**{account_number[-4::]}"
     else:
         return None
 
