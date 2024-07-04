@@ -1,11 +1,16 @@
-from masks import get_mask_card_number, get_mask_account
 from datetime import datetime
 from typing import Any
 
+from src.masks import get_mask_account, get_mask_card_number
+
 
 def mask_account_card(payment_details: str) -> str | None:
-    """ Обработка данных карты или счета """
-    if "Visa" in payment_details or "Maestro" in payment_details or "MasterCard" in payment_details:
+    """Обработка данных карты или счета"""
+    if (
+        "Visa" in payment_details
+        or "Maestro" in payment_details
+        or "MasterCard" in payment_details
+    ):
         card_details = get_mask_card_number(payment_details[-16:])
         return f"{payment_details[:-17]} {card_details}"
     elif "Счет" in payment_details:
@@ -22,8 +27,8 @@ print(mask_account_card("Visa Classic 6831982476737658"))
 
 
 def get_date(date_info: str) -> Any | None:
-    """ Преобразование даты в формат dd.mm.YYYY """
-    parsed_date = datetime.strptime(date_info[:10], '%Y-%m-%d').date()
+    """Преобразование даты в формат dd.mm.YYYY"""
+    parsed_date = datetime.strptime(date_info[:10], "%Y-%m-%d").date()
     formated_date = parsed_date.strftime("%m.%d.%Y")
     return formated_date
 
