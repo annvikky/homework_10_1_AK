@@ -1,19 +1,17 @@
-from typing import Any
+from typing import Dict, List
 
 
 def filter_by_state(
-    list_of_transactions: list[dict[str, str | int]],
+    list_transactions: List[Dict[str, str | int]],
     state_transaction: str = "EXECUTED",
-) -> Any:
+) -> List[Dict]:
     """Функция сортировки по статусу"""
-    executed_list = []
-    cancelled_list = []
-    for key in list_of_transactions:
+    filtered_transactions = []
+    for key in list_transactions:
         if key.get("state") == state_transaction:
-            executed_list.append(key)
-        else:
-            cancelled_list.append(key)
-    return f"{executed_list}, \n{cancelled_list}"
+            filtered_transactions.append(key)
+
+    return filtered_transactions
 
 
 print(
@@ -40,11 +38,15 @@ print(
 )
 
 
-def sort_by_date(list_of_transactions: list[dict[str, str | int]]) -> Any:
+def sort_by_date(
+    list_transactions: List[Dict[str, str | int]], ascending: bool = True
+) -> List[Dict]:
     """Функция сортировки по дате"""
-    sorted_list = sorted(list_of_transactions, key=lambda d: d["date"], reverse=True)
+    sorted_transactions = sorted(
+        list_transactions, key=lambda d: d["date"], reverse=ascending
+    )
 
-    return sorted_list
+    return sorted_transactions
 
 
 print(
