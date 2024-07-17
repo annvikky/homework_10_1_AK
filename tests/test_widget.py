@@ -3,7 +3,7 @@ import pytest
 from src.widget import get_date, mask_account_card
 
 
-def test_mask_account_card():
+def test_mask_account_card() -> None:
     # тест на корректность распознавания типа входных данных и применения соответствующей маскировки
     assert (
         mask_account_card("Visa Platinum 8990922113665229")
@@ -22,7 +22,9 @@ def test_mask_account_card():
         ("Visa Classic 6831982476737658", "Visa Classic 6831 98 ** **** 7658"),
     ],
 )
-def test_mask_account_card_as_expected(payment_details, expected_details):
+def test_mask_account_card_as_expected(
+    payment_details: str, expected_details: str | None
+) -> None:
     # тест на проверку универсальности функции
     assert mask_account_card(payment_details) == expected_details
 
@@ -38,7 +40,10 @@ def test_mask_account_card_as_expected(payment_details, expected_details):
         or ("Счет35383033474447895560", None)
     ],
 )
-def test_mask_account_card_invalid_number(payment_details, expected_details):
+def test_mask_account_card_invalid_number(
+    payment_details: str, expected_details: str | None
+) -> None:
+    # тест на проверку ввода некорректных данных
     assert mask_account_card(payment_details) is expected_details
 
 
@@ -49,12 +54,14 @@ def test_mask_account_card_invalid_number(payment_details, expected_details):
         ("2024-05-11T02:26:18.671407", "05.11.2024"),
     ],
 )
-def test_get_date_as_expected(date_info, expected_date_format):
+def test_get_date_as_expected(date_info: str, expected_date_format: str) -> None:
     # тест на правильность преобразование даты
     assert get_date(date_info) == expected_date_format
 
 
-def test_get_data_wrong_value():
-    # тест на ошибку в занчении даты
+@pytest.mark.parametrize("date_info", [("2024-13-11T02:26:18.671407"), ("")])
+def test_get_data_wrong_value(date_info: str) -> None:
+    # тест на ошибку в значении даты
     with pytest.raises(ValueError):
-        get_date("2024-13-11T02:26:18.671407")
+        get_date(date_info)
+

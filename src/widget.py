@@ -1,5 +1,4 @@
 from datetime import datetime
-from typing import Any
 
 from src.masks import get_mask_account, get_mask_card_number
 
@@ -20,7 +19,7 @@ def mask_account_card(payment_details: str) -> str | None:
         return None
 
 
-def get_date(date_info: str) -> Any | None:
+def get_date(date_info: str) -> str:
     """Преобразование даты в формат dd.mm.YYYY"""
     parsed_date = datetime.strptime(date_info[:10], "%Y-%m-%d").date()
     formated_date = parsed_date.strftime("%m.%d.%Y")

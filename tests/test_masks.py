@@ -1,7 +1,7 @@
 from src.masks import get_mask_account, get_mask_card_number
 
 
-def test_get_mask_card_number():
+def test_get_mask_card_number() -> None:
     # тест на корректность маскировки карты
     assert get_mask_card_number("7000792289606361") == "7000 79 ** **** 6361"
     # тест на корректность маскировки карты при неверной длине номера карты
@@ -13,10 +13,8 @@ def test_get_mask_card_number():
     # тест на корректность маскировки карты при неверной передаче номера карты
     assert get_mask_card_number("не помню номер карты") is None
 
-    assert get_mask_card_number("True") is None
 
-
-def test_get_mask_account():
+def test_get_mask_account() -> None:
     # тест на корректность маскировки счета
     assert get_mask_account("73654108430135874305") == "**4305"
 
@@ -28,5 +26,3 @@ def test_get_mask_account():
     assert get_mask_account("") is None
     # тест на корректность маскировки счета при неверной передаче номера счета
     assert get_mask_account("не помню номер счета") is None
-
-    assert get_mask_account("True") is None

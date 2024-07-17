@@ -23,3 +23,7 @@ pip install -r requirements.txt
 ## Документация:
 
 Для получения дополнительной информации обратитесь к [документации](https://github.com/annvikky/homework_10_1_AK/edit/feature/homework_10_1/README.md/).
+
+## Тестирование:
+
+Для всех вышеописанных функций приведены unit-тесты.
