@@ -125,16 +125,17 @@ def test_filter_by_currency(
     filtered_transactions: List[Dict[str, Dict]],
 ) -> None:
     # тест на корректность фильтрации
-    assert list(filter_by_currency(list_of_transactions, currency)) == [
-        filtered_transactions
-    ]
+    assert (
+        list(filter_by_currency(list_of_transactions, currency))
+        == filtered_transactions
+    )
 
 
 def test_filter_by_currency_stop_iter() -> None:
     # тест на выбрасывание StopIteration при исчерпывании значений итератором
     with pytest.raises(StopIteration):
         output = filter_by_currency(transactions, "USD")
-        for _ in range(2):
+        for _ in range(4):
             next(output)
 
 

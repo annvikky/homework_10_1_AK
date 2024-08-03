@@ -8,16 +8,14 @@ def filter_by_currency(
     if not list_of_transactions:
         print("Параметры заданы неверно")
     try:
-        filtered_transactions = list(
-            filter(
-                lambda transaction: transaction.get("operationAmount")
-                .get("currency")
-                .get("code")
-                == currency,
-                list_of_transactions,
-            )
+        filtered_transactions = filter(
+            lambda transaction: transaction.get("operationAmount")
+            .get("currency")
+            .get("code")
+            == currency,
+            list_of_transactions,
         )
-        yield filtered_transactions
+        return filtered_transactions
     except Exception:
         print("Параметры заданы неверно")
 
