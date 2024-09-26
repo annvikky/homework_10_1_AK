@@ -14,7 +14,7 @@ def test_get_transactions_list(path):
 
 
 def test_get_transactions_list_not_found():
-    """Тест на чтение файла, отмутствующего по указанному пути."""
+    """Тест на чтение файла, отcутствующего по указанному пути."""
     assert get_transactions_list("p") == []
 
 
