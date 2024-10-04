@@ -26,10 +26,13 @@ def read_transactions_from_csv_file(path: str) -> list[dict]:
         with open(path, "r", encoding="utf-8") as file:
             try:
                 logger.info("Возвращаем транзакции из csv-файла")
-                reader = csv.DictReader(file)
-                df = pd.DataFrame(reader)
-                df_dict = df.to_dict(orient="records")
-                return df_dict
+                # reader = csv.DictReader(file)
+                # df = pd.DataFrame(reader)
+                # df_dict = df.to_dict(orient="records")
+                # return df_dict
+                csv_data = pd.read_csv(path, sep=None)
+                csv_dict = csv_data.to_dict(orient="records")
+                return csv_dict
             except pd.errors.EmptyDataError as ex:
                 logger.warning(f"Файл пустой: {ex}")
                 return []

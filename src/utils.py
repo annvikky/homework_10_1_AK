@@ -2,7 +2,7 @@ import json
 import logging
 import os.path
 
-path = os.path.join(os.path.dirname(__file__), "..", "data", "operations.json")
+path_to_json = os.path.join(os.path.dirname(__file__), "..", "data", "operations.json")
 
 logger = logging.getLogger("utils")
 logger.setLevel(logging.DEBUG)
@@ -33,4 +33,4 @@ def get_transactions_list(path: str) -> list[dict]:
         return transactions_list
 
 
-# get_transactions_list(path)
+# get_transactions_list(path_to_json)

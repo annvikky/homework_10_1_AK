@@ -1,6 +1,9 @@
 from unittest.mock import mock_open, patch
 
-from src.reader import read_transactions_from_csv_file, read_transactions_from_excel_file
+from src.reader import (
+    read_transactions_from_csv_file,
+    read_transactions_from_excel_file,
+)
 
 data_csv = "id;state;date;amount\n650703;EXECUTED;2023-09-05T11:30:32Z;16210"
 data_excel = "'id': 650703.0, 'state': 'EXECUTED', 'date': '2023-09-05T11:30:32Z'"
