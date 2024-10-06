@@ -3,7 +3,7 @@ from typing import Dict, List
 
 import pytest
 
-from src.filter import filter_by_search_string, counter_by_description
+from src.filter import counter_by_description, filter_by_search_string
 
 transactions = [
     {

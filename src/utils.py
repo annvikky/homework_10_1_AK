@@ -6,7 +6,9 @@ path_to_json = os.path.join(os.path.dirname(__file__), "..", "data", "operations
 
 logger = logging.getLogger("utils")
 logger.setLevel(logging.DEBUG)
-file_handler = logging.FileHandler("../logs/utils.log", mode="w")
+file_handler = logging.FileHandler(
+    os.path.join(os.path.dirname(__file__), "..", "logs/utils.log"), mode="w"
+)
 file_formatter = logging.Formatter(
     "%(asctime)s - %(name)s - %(levelname)s: %(message)s"
 )
