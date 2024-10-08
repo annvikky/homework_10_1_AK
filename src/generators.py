@@ -9,9 +9,10 @@ def filter_by_currency(
         print("Параметры заданы неверно")
     try:
         filtered_transactions = filter(
-            lambda transaction: transaction.get("operationAmount")
-            .get("currency")
-            .get("code")
+            lambda transaction: transaction.get(
+                "currency_code",
+                transaction.get("operationAmount", {}).get("currency", {}).get("code"),
+            )
             == currency,
             list_of_transactions,
         )

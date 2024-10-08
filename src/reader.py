@@ -1,4 +1,3 @@
-import csv
 import logging
 import os.path
 
@@ -11,7 +10,9 @@ path_to_file_xls = os.path.join(
 
 logger = logging.getLogger("reader")
 logger.setLevel(logging.DEBUG)
-file_handler = logging.FileHandler("../logs/reader.log", mode="w")
+file_handler = logging.FileHandler(
+    os.path.join(os.path.dirname(__file__), "..", "logs/reader.log"), mode="w"
+)
 file_formatter = logging.Formatter(
     "%(asctime)s - %(name)s - %(levelname)s: %(message)s"
 )
@@ -23,23 +24,14 @@ def read_transactions_from_csv_file(path: str) -> list[dict]:
     """Чтение csv-файла и вывод списка транзакций."""
     logger.info("Открываем csv-файл")
     try:
-        with open(path, "r", encoding="utf-8") as file:
-            try:
-                logger.info("Возвращаем транзакции из csv-файла")
-                reader = csv.DictReader(file)
-                df = pd.DataFrame(reader)
-                df_dict = df.to_dict(orient="records")
-                return df_dict
-            except pd.errors.EmptyDataError as ex:
-                logger.warning(f"Файл пустой: {ex}")
-                return []
+        logger.info("Возвращаем транзакции из csv-файла")
 
-    except FileNotFoundError:
-        logger.error(f"Файл по пути {path} не найден.")
+        csv_data = pd.read_csv(path, sep=None, engine="python")
+        csv_dict = csv_data.to_dict(orient="records")
+        return csv_dict
+    except pd.errors.EmptyDataError as ex:
+        logger.warning(f"Файл пустой: {ex}")
         return []
-
-
-# read_transactions_from_csv_file(path=path_to_file_csv)
 
 
 def read_transactions_from_excel_file(path: str) -> list[dict]:
@@ -59,6 +51,3 @@ def read_transactions_from_excel_file(path: str) -> list[dict]:
     except FileNotFoundError:
         logger.error(f"Файл по пути {path} не найден.")
         return []
-
-
-# read_transactions_from_excel_file(path=path_to_file_xls)

@@ -64,4 +64,3 @@ def test_get_data_wrong_value(date_info: str) -> None:
     # тест на ошибку в значении даты
     with pytest.raises(ValueError):
         get_date(date_info)
-

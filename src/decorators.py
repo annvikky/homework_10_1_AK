@@ -3,7 +3,7 @@ from functools import wraps
 
 def log(filename=None):
     """Декоратор для логирования начала выполнения функции и ее результата в консоль
-    или в заданный файл (при передаче параметра filename"""
+    или в заданный файл (при передаче параметра filename)"""
 
     def inner(func):
         @wraps(func)
